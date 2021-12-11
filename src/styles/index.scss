@@ -1,0 +1,14 @@
+body {
+  background-color: aqua;
+  font-family: Avenir;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy"), url(./fonts/Gilroy-Light.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: local("Avenir"), url(./fonts/Avenir.ttf) format("opentype");
+}
