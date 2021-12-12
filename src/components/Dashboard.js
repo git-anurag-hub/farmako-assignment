@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions";
+import PatientInfo from "./PatientInfo";
+import PatientList from "./PatientList";
 
 class Dashboard extends Component {
   render() {
     return (
-      <div>
-        <h1>Dashboard</h1>
-        <div>{this.props.user.name}</div>
-        <button onClick={this.props.logoutUser}>Logout</button>
+      <div className="flex h-full">
+        <PatientList></PatientList>
+        <div className="sm:block hidden w-full h-full">
+          <PatientInfo
+            logoutUser={this.props.logoutUser}
+            username={this.props.user.name}
+          ></PatientInfo>
+        </div>
       </div>
     );
   }

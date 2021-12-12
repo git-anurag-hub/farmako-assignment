@@ -8,7 +8,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import thunk from "redux-thunk";
 import App from "./components/App";
 import reducer from "./reducers";
-import "./styles/index.scss";
 
 const persistConfig = {
   key: "auth",
