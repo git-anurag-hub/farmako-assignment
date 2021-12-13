@@ -58,10 +58,10 @@ export default class PatientInfo extends Component {
   render() {
     return (
       <div className="font-Avenir">
-        <div className="flex w-full shadow-md py-1 justify-around">
+        <div className="flex w-full shadow-md py-1 justify-around relative">
           <span className="">Vinay Vishal Hospital</span>
           <span
-            className="fixed right-32 cursor-pointer"
+            className="absolute right-32 cursor-pointer"
             onClick={() => {
               this.props.logoutUser();
             }}
