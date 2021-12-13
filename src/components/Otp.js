@@ -11,7 +11,6 @@ import animationData from "../lotties/loading.json";
 
 class Otp extends Component {
   state = {
-    phone: "",
     otp: "",
     loading: false,
   };
@@ -21,9 +20,6 @@ class Otp extends Component {
     if (this.props.isLoggedIn) {
       history.push("/");
     }
-    // Get the phone number from the local storage in case user refreshes the page.
-    const phone = localStorage.getItem("phone");
-    this.setState({ phone });
   };
 
   handleOtp = async () => {
@@ -55,7 +51,9 @@ class Otp extends Component {
             <hr className="my-3 mx-32" />
             <div className="text-dark-purple mx-40 text-xs my-3">
               Enter the OTP sent to entered mobile number{" "}
-              <span className="text-purple tracking-wider font-AvenirBold">{this.state.phone}</span>
+              <span className="text-purple tracking-wider font-AvenirBold">
+                {this.props.phoneno}
+              </span>
             </div>
             <form className="flex-col flex items-center my-3">
               <input
@@ -108,6 +106,8 @@ const mapStateToProps = (state) => {
   return {
     // isLogggedIn is a boolean that is true if user is logged in.
     isLoggedIn: state.auth.length > 0,
+    // phoneno is a string that is the phone number of the user from the send otp action.
+    phoneno: state.phoneno,
   };
 };
 

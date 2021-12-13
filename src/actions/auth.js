@@ -4,14 +4,13 @@ import history from "../history";
 // Sends the otp to the mobile number
 export const sendOtp = (phone) => async (dispatch) => {
   try {
-    localStorage.setItem("phone", phone);
     const res = await axios.post("https://accounts.dev.farmako.in/api/users/sendOTP", {
       phone: "+918002572171",
       isShort: false,
     });
     console.log(res);
     history.push("/otp");
-    dispatch({ type: "SEND_OTP", payload: res.data });
+    dispatch({ type: "SEND_OTP", payload: phone });
   } catch (e) {
     console.log(e);
   }

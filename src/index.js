@@ -13,11 +13,11 @@ import reducer from "./reducers";
 const persistConfig = {
   key: "auth",
   storage: storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "phoneno"],
 };
 const pReducer = persistReducer(persistConfig, reducer);
 
-// Redux chrome extension support
+// Redux chrome extension support (for debugging)
 const composeEnancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // Create store with reducer and middleware
 const store = createStore(pReducer, composeEnancers(applyMiddleware(thunk)));
