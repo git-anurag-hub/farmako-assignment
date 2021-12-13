@@ -8,7 +8,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="flex h-full">
-        <PatientList></PatientList>
+        <PatientList logoutUser={this.props.logoutUser}></PatientList>
         <div className="sm:block hidden w-full h-full">
           <PatientInfo
             logoutUser={this.props.logoutUser}

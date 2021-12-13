@@ -5,6 +5,8 @@ module.exports = {
       fontFamily: {
         Gilroy: ["Gilroy", "sans-serif"],
         Avenir: ["Avenir", "sans-serif"],
+        AvenirBold: ["Avenir-Bold", "sans-serif"],
+        AvenirLight: ["Avenir-Light", "sans-serif"],
       },
       colors: {
         "light-purple": "#F5F7FF",

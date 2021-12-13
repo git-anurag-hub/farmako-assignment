@@ -10,7 +10,17 @@
 
   @font-face {
     font-family: "Avenir";
-    src: local("Avenir"), url(./fonts/Avenir.ttf) format("truetype");
+    src: local("Avenir"), url(./fonts/Avenir.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "Avenir-Light";
+    src: local("Avenir-Light"), url(./fonts/AvenirLight.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "Avenir-Bold";
+    src: local("Avenir-Bold"), url(./fonts/AvenirBold.otf) format("opentype");
   }
 }
 /* Chrome, Safari, Edge, Opera */

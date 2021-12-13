@@ -3,26 +3,35 @@ import { connect } from "react-redux";
 import { sendOtp } from "../actions";
 import Lottie from "react-lottie";
 import animationData from "../lotties/loading.json";
+
+// Login Component for the application.
+// This component is responsible for rendering the login form and handling the login process.
+// Shown when the user is not logged in.
+// Routed to '/' from App component.
+
 class Login extends Component {
   state = {
     phoneno: "",
     loading: false,
   };
 
+  // Handle the submit event of the form.
   handleNext = async () => {
+    // Loading state starts.
     this.setState({ loading: true });
+    // Trigger the action to send the OTP.
     await this.props.sendOtp("+91" + this.state.phoneno);
+    // Loading state ends.
     this.setState({ loading: false });
   };
 
+  // Handles the change in the input field.
   handleChange = async (e) => {
+    // Set the max length of the input field to 10.
     if (e.target.value.length > 10) {
       return;
     }
     var phoneno = e.target.value;
-    // if (e.target.value.length === 4 || e.target.value.length === 7) {
-    //   phoneno = phoneno + " ";
-    // }
     this.setState({ phoneno });
   };
 
@@ -58,6 +67,7 @@ class Login extends Component {
                   placeholder="9999 999 999"
                 ></input>
               </div>
+              {/* Set the button to disabled when the state is loading or when invalid phoneno. */}
               <button
                 className={`px-2 py-1 rounded w-64 text-white my-4 ${
                   this.state.phoneno.length < 10 ? "cursor-not-allowed bg-dark-gray " : "bg-purple"
@@ -67,6 +77,7 @@ class Login extends Component {
                   this.handleNext();
                 }}
               >
+                {/* Set the loading animation when the state is loading*/}
                 {this.state.loading ? (
                   <Lottie
                     options={{
@@ -85,6 +96,7 @@ class Login extends Component {
               </button>
             </form>
           </div>
+          {/* Footer bar shown only when the sceen size is desktop*/}
           <div className=" w-screen bottom-0 fixed h-5 bg-gradient-to-r from-purple to-gradient-purple hidden sm:block"></div>
         </div>
       </div>
@@ -92,8 +104,5 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-export default connect(mapStateToProps, { sendOtp })(Login);
+// Map the redux actions to the props of the component.
+export default connect(null, { sendOtp })(Login);

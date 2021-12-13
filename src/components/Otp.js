@@ -5,6 +5,10 @@ import history from "../history";
 import Lottie from "react-lottie";
 import animationData from "../lotties/loading.json";
 
+// Otp component is a form that takes in a code and triggers a login action.
+// Shown when the user is not logged in and is trying to login.
+// Routed to '/otp' from App component.
+
 class Otp extends Component {
   state = {
     phone: "",
@@ -13,20 +17,26 @@ class Otp extends Component {
   };
 
   componentDidMount = () => {
+    // If user is logged in, redirect to home page.
     if (this.props.isLoggedIn) {
       history.push("/");
     }
+    // Get the phone number from the local storage in case user refreshes the page.
     const phone = localStorage.getItem("phone");
     this.setState({ phone });
   };
 
   handleOtp = async () => {
+    // Loading animation starts when user clicks on login button.
     this.setState({ loading: true });
+    // Trigger login action.
     await this.props.loginUser(this.state.otp);
+    // Loading animation stops when login action is completed.
     this.setState({ loading: false });
   };
 
   handleChange = async (e) => {
+    // Set max length to 4.
     if (e.target.value.length > 4) {
       return;
     }
@@ -45,11 +55,11 @@ class Otp extends Component {
             <hr className="my-3 mx-32" />
             <div className="text-dark-purple mx-40 text-xs my-3">
               Enter the OTP sent to entered mobile number{" "}
-              <span className="text-purple tracking-wider">{this.state.phone}</span>
+              <span className="text-purple tracking-wider font-AvenirBold">{this.state.phone}</span>
             </div>
             <form className="flex-col flex items-center my-3">
               <input
-                className="p-2 rounded-xl bg-light-purple text-center focus:outline-none w-64 tracking-otp"
+                className="p-2 rounded-xl bg-light-purple text-center focus:outline-none w-64 tracking-otp font-AvenirBold "
                 type="number"
                 onChange={(e) => this.handleChange(e)}
                 value={this.state.otp}
@@ -57,6 +67,7 @@ class Otp extends Component {
                 maxLength="4"
                 placeholder="0 0 0 0"
               ></input>
+              {/* Set the button to disabled when the state is loading or when invalid otp. */}
               <button
                 className={`px-2 py-1 rounded w-64 text-white my-4 ${
                   this.state.otp.length < 4 ? "cursor-not-allowed bg-dark-gray " : "bg-purple"
@@ -66,6 +77,7 @@ class Otp extends Component {
                   this.handleOtp();
                 }}
               >
+                {/* Set the loading animation when the state is loading*/}
                 {this.state.loading ? (
                   <Lottie
                     options={{
@@ -91,10 +103,13 @@ class Otp extends Component {
   }
 }
 
+// map redux state to props of component.
 const mapStateToProps = (state) => {
   return {
+    // isLogggedIn is a boolean that is true if user is logged in.
     isLoggedIn: state.auth.length > 0,
   };
 };
 
+// map the action to props of component.
 export default connect(mapStateToProps, { loginUser })(Otp);

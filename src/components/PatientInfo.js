@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
+// PatientInfo component - displays patient information
+// Shown on the dashboard page
 export default class PatientInfo extends Component {
+  // Fake state of the patient history
   state = {
     timeline: [
       {
@@ -14,6 +17,7 @@ export default class PatientInfo extends Component {
     ],
   };
 
+  // Render patient timeline history
   renderTimeline() {
     return this.state.timeline.map((item) => {
       return (
@@ -30,7 +34,7 @@ export default class PatientInfo extends Component {
                 </div>
               </div>
               <div class="p-4 rounded-xl mb-4 ml-3 mr-auto shadow-md w-full border-gray-400 border-2">
-                <div className="text-lg">Back Pain Record</div>
+                <div className="text-xl font-AvenirBold">Back Pain Record</div>
                 <div className="flex text-sm mt-3">
                   <button className="px-3 py-2 bg-purple text-white rounded-md mr-3">
                     Prescription
@@ -62,7 +66,7 @@ export default class PatientInfo extends Component {
               this.props.logoutUser();
             }}
           >
-            <span className="flex items-center">
+            <span className="flex items-center font-AvenirLight">
               Dr. {this.props.username} <span class="material-icons">arrow_drop_down</span>
             </span>
           </span>
@@ -83,19 +87,19 @@ export default class PatientInfo extends Component {
           </div>
 
           <div className="w-full mt-10 py-5 px-10 bg-light-purple rounded-xl text-sm">
-            <span class="inline-grid grid-cols-2 gap-x-60 gap-y-4">
-              <span>
-                Name: <span>Aman Bhandula</span>
-              </span>
-              <span>
-                Patient ID: <span>FH-101010</span>
-              </span>
-              <span>
-                Age: <span>22</span>
-              </span>
-              <span>
-                Gender: <span>Male</span>
-              </span>
+            <span class="inline-grid grid-cols-2 gap-x-40 gap-y-4">
+              <div className="inline-grid grid-cols-2 gap-y-4">
+                <span className="font-AvenirLight">Name: </span>
+                <span>Aman Bhandula</span>
+                <span className="font-AvenirLight">Age: </span>
+                <span>22</span>
+              </div>
+              <div className="inline-grid grid-cols-2 gap-y-4">
+                <span className="font-AvenirLight">Patient ID: </span>
+                <span>101010</span>
+                <span className="font-AvenirLight">Gender: </span>
+                <span>Male</span>
+              </div>
             </span>
           </div>
 

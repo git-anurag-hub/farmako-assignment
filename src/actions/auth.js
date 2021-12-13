@@ -1,6 +1,7 @@
 import axios from "axios";
 import history from "../history";
 
+// Sends the otp to the mobile number
 export const sendOtp = (phone) => async (dispatch) => {
   try {
     localStorage.setItem("phone", phone);
@@ -16,6 +17,7 @@ export const sendOtp = (phone) => async (dispatch) => {
   }
 };
 
+// Verifies the otp
 export const loginUser = (otp) => async (dispatch) => {
   try {
     const res = await axios.post("https://accounts.dev.farmako.in/api/users/loginOTP", {
@@ -29,6 +31,7 @@ export const loginUser = (otp) => async (dispatch) => {
   }
 };
 
+// Logs out the user
 export const logoutUser = (otp) => async (dispatch) => {
   try {
     dispatch({ type: "LOGOUT_USER" });
